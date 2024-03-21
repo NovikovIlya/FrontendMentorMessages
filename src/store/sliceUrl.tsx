@@ -1,12 +1,13 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+import { initialStateType } from "../types/types";
 
 export const getData = createAsyncThunk('get/getData', async () => {
   const { data } = await axios.get('https://4e1abe50417fc731.mokky.dev/all');
   return data;
 });
 
-const initialState = {
+const initialState: initialStateType = {
   messages: [],
   isLoad: true,
   isError:false,
