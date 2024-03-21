@@ -1,5 +1,5 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit'
-import sliceUrl from './';
+import sliceUrl from './sliceUrl';
 import {
     persistStore,
     persistReducer,
