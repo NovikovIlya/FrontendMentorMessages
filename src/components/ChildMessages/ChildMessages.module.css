@@ -13,17 +13,17 @@
   margin-top: 20px;
   background-color: white;
   border-radius: 7px;
-  padding: 10px;
+  padding: 20px;
   display: grid;
   grid-template-columns: 1fr 10fr;
   gap: 10px;
   width: 80%;
 }
-.left {
+.left{
   display: flex;
   align-items: center;
   flex-direction: column;
-  background-color: #f5f6fa;
+  background-color: #F5F6FA;
   margin-left: 14px;
   margin-right: 14px;
   border-radius: 10px;
@@ -31,16 +31,20 @@
 }
 .btn {
   cursor: pointer;
-  margin: 3px;
+  margin:3px ;
 }
 
-.head {
+.head{
   display: flex;
   justify-content: space-between;
+  margin-bottom: 15px;
 }
-.miniHead {
+.miniHead{
   display: flex;
   gap: 10px;
+}
+.right{
+  
 }
 .reply{
   cursor: pointer;
@@ -49,4 +53,7 @@
 }
 .images{
   width: 15px;
+}
+.date{
+  color:gray
 }

@@ -4,6 +4,7 @@ import { useAppDispatch, useAppSelector } from "../../hooks/redux";
 import { changeScore, changeScoreLocal } from "../../store/sliceUrl";
 import InputComponent from "../InputComponent/InputComponent";
 import ChildMessage from "../ChildMessages/ChildMessages";
+import countDayWeek from "../../utils/countDayWeek";
 
 const MessageComponent = () => {
   const [showInput, setShowInput] = useState(null);
@@ -57,7 +58,7 @@ const MessageComponent = () => {
               <div className={styles.head}>
                 <div className={styles.miniHead}>
                   <div className={styles.username}>{item.user.username}</div>
-                  <div className={styles.date}>{item.createdAt}</div>
+                  <div className={styles.date}>{countDayWeek(item.createdAt)} days ago</div>
                 </div>
                 <div onClick={()=>replyFn(item.id)} className={styles.reply}>
                    <img className={styles.images} src="https://www.svgrepo.com/show/533707/reply.svg"/>

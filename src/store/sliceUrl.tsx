@@ -87,7 +87,6 @@ export const sliceData = createSlice({
       }
     },
     addMessageLocal: (state, action) => {
-      console.log(action.payload)
       state.messages.push(action.payload)
     },
     addMessageLocalReply: (state, action) => {

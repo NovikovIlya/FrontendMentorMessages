@@ -1,14 +1,15 @@
 import { Fragment, useState } from "react";
 import styles from "./ChildMessages.module.css";
 import { useAppDispatch, useAppSelector} from "../../hooks/redux";
-import { changeScore, changeScoreChildLocal, changeScoreLocal, changeScoreReply } from "../../store/sliceUrl";
+import {  changeScoreChildLocal,  changeScoreReply } from "../../store/sliceUrl";
 import InputComponent from "../InputComponent/InputComponent";
+import countDayWeek from '../../utils/countDayWeek'
 
 const ChildMessage = ({ replies, MainId }: any) => {
   const [showInput, setShowInput] = useState(null);
   const dispatch = useAppDispatch();
   const {messages} = useAppSelector((state) => state.sliceUrl)
-  console.log(MainId)
+
 
   const changeScore = (id:number,action:string) => {
     // Ищем индекс элемента в messages, где id совпадает с id родительского элемента
@@ -30,7 +31,7 @@ const ChildMessage = ({ replies, MainId }: any) => {
 
     const updatedMessages = [...messages]; // Копируем messages
     updatedMessages[userIndex] = { ...updatedMessages[userIndex], replies: updatedReplies }; // Обновляем replies в сообщении
-    console.log(updatedMessages)
+
 
     const obj = {
       id:MainId,
@@ -38,7 +39,7 @@ const ChildMessage = ({ replies, MainId }: any) => {
     }
     dispatch(changeScoreReply(obj))
     dispatch(changeScoreChildLocal(obj))
-    // dispatch(changeScoreLocal(obj));
+
 
   };
   
@@ -46,7 +47,7 @@ const ChildMessage = ({ replies, MainId }: any) => {
   const replyFn = (id: any) => {
     setShowInput(id);
   };
-  console.log(replies)
+
   return (
     <div className={styles.mainContainer}>
       {Array.isArray(replies) && replies?.map((item: any,index) => (
@@ -74,7 +75,7 @@ const ChildMessage = ({ replies, MainId }: any) => {
               <div className={styles.head}>
                 <div className={styles.miniHead}>
                   <div className={styles.username}>{item.user.username}</div>
-                  <div className={styles.date}>{item.createdAt}</div>
+                  <div className={styles.date}>{countDayWeek(item.createdAt)} days ago</div>
                 </div>
                 <div onClick={() => replyFn(item.id)} className={styles.reply}>
                   <img className={styles.images} src="https://www.svgrepo.com/show/533707/reply.svg"/>
