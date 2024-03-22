@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styles from "./InputComponent.module.css";
 import { useAppDispatch } from "../../hooks/redux";
-import { sendMessage } from "../../store/sliceUrl";
+import { addMessageLocal, sendMessage } from "../../store/sliceUrl";
 
 const InputComponent = ({ text = "Send" }) => {
   const [textMessage, setTextMessage] = useState("");
@@ -30,12 +30,13 @@ const InputComponent = ({ text = "Send" }) => {
       },
       createdAt: formattedDate,
     };
+    dispatch(addMessageLocal(obj))
     dispatch(sendMessage(obj))
   };
   return (
-    <div>
+    <div className={styles.container}>
       <input onChange={handleText} placeholder="Enten text message" />
-      <div>
+      <div >
         <input onChange={handleChange} placeholder="Your name" />
         <button onClick={sendMessageFn}>{text}</button>
       </div>

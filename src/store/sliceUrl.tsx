@@ -56,6 +56,9 @@ export const sliceData = createSlice({
         state.messages[index].score = action.payload.score;
       }
     },
+    addMessageLocal: (state, action) => {
+      state.messages.push(action.payload)
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(getData.pending, (state) => {
@@ -79,9 +82,12 @@ export const sliceData = createSlice({
     });
     builder.addCase(sendMessage.pending, (state) => {});
     builder.addCase(sendMessage.fulfilled, (state, action) => {});
-    builder.addCase(sendMessage.rejected, (state, action) => {});
+    builder.addCase(sendMessage.rejected, (state, action) => {
+      alert("Something went wrong!");
+      location.reload();
+    });
   },
 });
 
-export const { changeScoreLocal } = sliceData.actions;
+export const { changeScoreLocal ,addMessageLocal} = sliceData.actions;
 export default sliceData.reducer;
