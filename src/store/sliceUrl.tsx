@@ -9,27 +9,33 @@ export const getData = createAsyncThunk("get/getData", async () => {
 
 export const changeScore = createAsyncThunk(
   "patch/changeScore",
-  async (obj) => {
+  async (obj: { id: number; score: number }) => {
     const { data } = await axios.patch(
       `https://4e1abe50417fc731.mokky.dev/all/${obj.id}`,
-      { score: obj.score },
+      { score: obj.score }
     );
     return data;
-  },
+  }
 );
 
-export const sendMessage = createAsyncThunk("post/changeScore", async (obj) => {
-  const { data } = await axios.post(`https://4e1abe50417fc731.mokky.dev/all`, {
-    content: obj.content,
-    user: {
-      username: obj.username,
-    },
-    createdAt: obj.createdAt,
-    score: 0,
-    replies: [],
-  });
-  return data;
-});
+export const sendMessage = createAsyncThunk(
+  "post/sendMessage",
+  async (obj: any) => {
+    const { data } = await axios.post(
+      `https://4e1abe50417fc731.mokky.dev/all`,
+      {
+        content: obj.content,
+        user: {
+          username: obj.username,
+        },
+        createdAt: obj.createdAt,
+        score: 0,
+        replies: [],
+      }
+    );
+    return data;
+  }
+);
 
 const initialState: initialStateType = {
   messages: [],

@@ -7,7 +7,7 @@ import { changeScore, changeScoreLocal } from "../../store/sliceUrl";
 const MessageComponent = () => {
   const { messages } = useAppSelector((state) => state.sliceUrl);
   const dispatch = useAppDispatch();
-  const changeScorePlus = (id, score) => {
+  const changeScorePlus = (id: number, score: number) => {
     const obj = {
       id,
       score: score + 1,
@@ -15,7 +15,7 @@ const MessageComponent = () => {
     dispatch(changeScoreLocal(obj));
     dispatch(changeScore(obj));
   };
-  const changeScoreMinus = (id, score) => {
+  const changeScoreMinus = (id: number, score: number) => {
     const obj = {
       id,
       score: score - 1,
@@ -24,7 +24,8 @@ const MessageComponent = () => {
     dispatch(changeScore(obj));
   };
 
-  const sendMessage = () => {};
+
+  
   return (
     <>
       {messages?.map((item) => (
@@ -51,7 +52,7 @@ const MessageComponent = () => {
                 <div className={styles.date}>{item.createdAt}</div>
                 <div className={styles.reply}>Reply</div>
               </div>
-              <div onClick={sendMessage} className={styles.text}>
+              <div  className={styles.text}>
                 {item.content}
               </div>
             </div>
