@@ -70,7 +70,7 @@ const MessageComponent = () => {
           </div>
           <ChildMessage replies={item.replies} MainId={item.id}/>
           {showInput === item.id && 
-            <InputComponent idMain={item.id} isReply={true}/>
+            <InputComponent setShowInput={setShowInput} idMain={item.id} isReply={true} miniMaxInp={true} />
           }
         </Fragment>
       ))}

@@ -15,7 +15,7 @@ const MainPage = () => {
   return (
     <div className={styles.container}>
       <MessageComponent />
-      <InputComponent />
+      <InputComponent text="Send" />
     </div>
   );
 };

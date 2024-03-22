@@ -1,38 +1,42 @@
-.container{
-    margin-top: 10px;
-    display: grid ;
-    grid-template-columns: 5fr 1fr;
-    gap: 10px;
-    padding: 20px;
-    background-color: white;
-    border-radius: 7px;
+.container {
+  margin-top: 10px;
+  display: grid;
+  grid-template-columns: 5fr 1fr;
+  gap: 10px;
+  padding: 20px;
+  background-color: white;
+  border-radius: 7px;
 }
-.reply{
-    width: 80%;;
+.reply {
+  width: 80%;
 }
 .containerTwo {
-    width: 10%;
-    border-left: 1px solid rgba(0, 0, 0, 0.158);
-    margin-top: 20px;
- }
-.inp{
-    border-radius: 5px;
-    border:1px solid rgba(0, 0, 0, 0.301);
-    padding: 10px;
-  }
-  .miniCont{
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    flex-wrap: wrap;
-  }
-  .btn{
-    color:white;
-    background-color: #5558B5;
-    border-radius: 10px;
-    padding-top: 10px;
-    padding-bottom: 10px;
-  }
-  .btn:hover{
-    cursor: pointer;
-  }
+  width: 10%;
+  border-left: 1px solid rgba(0, 0, 0, 0.158);
+  margin-top: 20px;
+}
+.inp {
+  border-radius: 5px;
+  border: 1px solid rgba(0, 0, 0, 0.301);
+  padding: 10px;
+}
+.miniCont {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+.btn {
+  color: white;
+  background-color: #5558b5;
+  border-radius: 10px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+.btn:hover {
+  cursor: pointer;
+}
+
+.miniMax{
+  width: 90%;
+}
