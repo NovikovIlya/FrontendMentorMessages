@@ -1,55 +1,69 @@
-import { Fragment, useEffect, useState } from "react";
+import { Fragment, useState } from "react";
 import styles from "./ChildMessages.module.css";
-import { useAppDispatch, useAppSelector } from "../../hooks/redux";
-import { getData } from "../../store/sliceUrl";
-import { changeScore, changeScoreLocal } from "../../store/sliceUrl";
+import { useAppDispatch, useAppSelector} from "../../hooks/redux";
+import { changeScore, changeScoreChildLocal, changeScoreLocal, changeScoreReply } from "../../store/sliceUrl";
 import InputComponent from "../InputComponent/InputComponent";
 
-const ChildMessage = ({replies}:any) => {
-  const [replyClick, setReplyClick] = useState(false);
+const ChildMessage = ({ replies, MainId }: any) => {
   const [showInput, setShowInput] = useState(null);
-  const { messages } = useAppSelector((state) => state.sliceUrl);
   const dispatch = useAppDispatch();
-  const changeScorePlus = (id: number, score: number) => {
-    const obj = {
-      id,
-      score: score + 1,
-    };
-    dispatch(changeScoreLocal(obj));
-    dispatch(changeScore(obj));
-  };
-  const changeScoreMinus = (id: number, score: number) => {
-    const obj = {
-      id,
-      score: score - 1,
-    };
-    dispatch(changeScoreLocal(obj));
-    dispatch(changeScore(obj));
-  };
+  const {messages} = useAppSelector((state) => state.sliceUrl)
+  console.log(MainId)
 
-  const replyFn = (id:any)=>{
+  const changeScore = (id:number,action:string) => {
+    // Ищем индекс элемента в messages, где id совпадает с id родительского элемента
+    const userIndex = messages.findIndex((message) => message.id === MainId);
+    // Ищем индекс элемента в replies, где id совпадает с id родительского элемента
+    const replyIndex = messages[userIndex].replies.findIndex((message) => message.id === id);
+
+    const updatedReplies = [...messages[userIndex].replies]; // Копируем replies, чтобы избежать мутации исходного объекта
+    if(action === 'plus'){
+      updatedReplies[replyIndex] = { ...updatedReplies[replyIndex], 
+        score: updatedReplies[replyIndex].score + 1 }; // Обновляем score в реплае
+
+    }
+    if(action === 'minus'){
+      updatedReplies[replyIndex] = { ...updatedReplies[replyIndex], 
+        score: updatedReplies[replyIndex].score - 1 }; // Обновляем score в реплае
+    }
+
+
+    const updatedMessages = [...messages]; // Копируем messages
+    updatedMessages[userIndex] = { ...updatedMessages[userIndex], replies: updatedReplies }; // Обновляем replies в сообщении
+    console.log(updatedMessages)
+
+    const obj = {
+      id:MainId,
+      replies: updatedReplies
+    }
+    dispatch(changeScoreReply(obj))
+    dispatch(changeScoreChildLocal(obj))
+    // dispatch(changeScoreLocal(obj));
+
+  };
+  
+
+  const replyFn = (id: any) => {
     setShowInput(id);
-  }
-
-
+  };
+  console.log(replies)
   return (
     <div className={styles.mainContainer}>
-    {/* <div className={styles.containerTwo}></div> */}
-      {replies?.map((item:any) => (
-        <Fragment key={item.id}>
-            <div className={styles.containerTwo}></div>
+      {Array.isArray(replies) && replies?.map((item: any,index) => (
+        <Fragment key={index}>
+          <div className={styles.containerTwo}></div>
           <div className={styles.container}>
             <div>
               <div className={styles.left}>
                 <div
-                  onClick={() => changeScorePlus(item.id, item.score)}
+                  onClick={() => changeScore(item.id,'plus')}
                   className={styles.btn}
                 >
                   +
                 </div>
                 <div>{item.score}</div>
                 <div
-                  onClick={() => changeScoreMinus(item.id, item.score)}
+                  onClick={() => changeScore(item.id, 'minus')}
                   className={styles.btn}
                 >
                   -
@@ -62,18 +76,19 @@ const ChildMessage = ({replies}:any) => {
                   <div className={styles.username}>{item.user.username}</div>
                   <div className={styles.date}>{item.createdAt}</div>
                 </div>
-                <div onClick={()=>replyFn(item.id)} className={styles.reply}>Reply</div>
+                <div onClick={() => replyFn(item.id)} className={styles.reply}>
+                  Reply
+                </div>
               </div>
               <div className={styles.text}>{item.content}</div>
             </div>
           </div>
-          
-          {showInput === item.id && 
-          <InputComponent idMain={item.id} isReply={true}/>
-          }
+
+          {showInput === item.id && (
+            <InputComponent setShowInput={setShowInput} miniInp={true} idMain={MainId} isReply={true} />
+          )}
         </Fragment>
       ))}
-      
     </div>
   );
 };

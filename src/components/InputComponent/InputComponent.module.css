@@ -1,8 +1,17 @@
 .container{
+    margin-top: 10px;
     display: grid ;
     grid-template-columns: 5fr 1fr;
     gap: 10px;
+    padding: 10px;
+    background-color: white;
+    border-radius: 7px;
 }
 .reply{
-    display: none;
+    width: 80%;;
 }
+.containerTwo {
+    width: 10%;
+    border-left: 1px solid rgba(0, 0, 0, 0.158);
+    margin-top: 20px;
+  }

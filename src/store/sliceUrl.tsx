@@ -18,6 +18,17 @@ export const changeScore = createAsyncThunk(
   }
 );
 
+export const changeScoreReply = createAsyncThunk(
+  "patch/changeScoreReply",
+  async (obj:any) => {
+    const { data } = await axios.patch(
+      `https://4e1abe50417fc731.mokky.dev/all/${obj.id}`,
+      { replies: obj.replies }
+    );
+    return data;
+  }
+);
+
 export const sendMessage = createAsyncThunk(
   "post/sendMessage",
   async (obj: any) => {
@@ -67,8 +78,25 @@ export const sliceData = createSlice({
         state.messages[index].score = action.payload.score;
       }
     },
+    changeScoreChildLocal: (state, action) => {
+      const index = state.messages.findIndex(
+        (message) => message.id === action.payload.id,
+      );
+      if (index !== -1) {
+        state.messages[index].replies = action.payload.replies;
+      }
+    },
     addMessageLocal: (state, action) => {
+      console.log(action.payload)
       state.messages.push(action.payload)
+    },
+    addMessageLocalReply: (state, action) => {
+      const index = state.messages.findIndex(
+        (message) => message.id === action.payload.mainId,
+      );
+      if (index !== -1) {
+        state.messages[index].replies = action.payload.repa;
+      }
     },
   },
   extraReducers: (builder) => {
@@ -103,8 +131,14 @@ export const sliceData = createSlice({
       alert("Something went wrong!");
       location.reload();
     });
+    builder.addCase(changeScoreReply.pending, (state) => {});
+    builder.addCase(changeScoreReply.fulfilled, (state, action) => {});
+    builder.addCase(changeScoreReply.rejected, (state, action) => {
+      alert("Something went wrong!");
+      location.reload();
+    });
   },
 });
 
-export const { changeScoreLocal ,addMessageLocal} = sliceData.actions;
+export const { changeScoreLocal ,addMessageLocal,changeScoreChildLocal,addMessageLocalReply} = sliceData.actions;
 export default sliceData.reducer;

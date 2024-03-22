@@ -1,13 +1,11 @@
-import { Fragment, useEffect, useState } from "react";
+import { Fragment,  useState } from "react";
 import styles from "./MessageComponent.module.css";
 import { useAppDispatch, useAppSelector } from "../../hooks/redux";
-import { getData } from "../../store/sliceUrl";
 import { changeScore, changeScoreLocal } from "../../store/sliceUrl";
 import InputComponent from "../InputComponent/InputComponent";
 import ChildMessage from "../ChildMessages/ChildMessages";
 
 const MessageComponent = () => {
-  const [replyClick, setReplyClick] = useState(false);
   const [showInput, setShowInput] = useState(null);
   const { messages } = useAppSelector((state) => state.sliceUrl);
   const dispatch = useAppDispatch();
@@ -66,9 +64,9 @@ const MessageComponent = () => {
               <div className={styles.text}>{item.content}</div>
             </div>
           </div>
-          <ChildMessage replies={item.replies}/>
+          <ChildMessage replies={item.replies} MainId={item.id}/>
           {showInput === item.id && 
-          <InputComponent idMain={item.id} isReply={true}/>
+            <InputComponent idMain={item.id} isReply={true}/>
           }
         </Fragment>
       ))}
