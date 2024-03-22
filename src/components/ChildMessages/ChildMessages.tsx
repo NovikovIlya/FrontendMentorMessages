@@ -77,7 +77,8 @@ const ChildMessage = ({ replies, MainId }: any) => {
                   <div className={styles.date}>{item.createdAt}</div>
                 </div>
                 <div onClick={() => replyFn(item.id)} className={styles.reply}>
-                  Reply
+                  <img className={styles.images} src="https://www.svgrepo.com/show/533707/reply.svg"/>
+                  <span>Reply</span>
                 </div>
               </div>
               <div className={styles.text}>{item.content}</div>

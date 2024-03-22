@@ -42,3 +42,11 @@
   display: flex;
   gap: 10px;
 }
+.reply{
+  cursor: pointer;
+  display: flex;
+  gap: 5px;
+}
+.images{
+  width: 15px;
+}

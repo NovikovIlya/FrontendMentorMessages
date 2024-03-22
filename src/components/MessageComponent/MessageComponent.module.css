@@ -2,7 +2,7 @@
   margin-top: 20px;
   background-color: white;
   border-radius: 7px;
-  padding: 10px;
+  padding: 20px;
   display: grid;
   grid-template-columns: 1fr 10fr;
   gap:10px;
@@ -26,8 +26,20 @@
 .head{
   display: flex;
   justify-content: space-between;
+  margin-bottom: 15px;
 }
 .miniHead{
   display: flex;
   gap: 10px;
+}
+.right{
+  
+}
+.reply{
+  cursor: pointer;
+  display: flex;
+  gap: 5px;
+}
+.images{
+  width: 15px;
 }

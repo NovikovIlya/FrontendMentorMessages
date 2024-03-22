@@ -59,7 +59,10 @@ const MessageComponent = () => {
                   <div className={styles.username}>{item.user.username}</div>
                   <div className={styles.date}>{item.createdAt}</div>
                 </div>
-                <div onClick={()=>replyFn(item.id)} className={styles.reply}>Reply</div>
+                <div onClick={()=>replyFn(item.id)} className={styles.reply}>
+                   <img className={styles.images} src="https://www.svgrepo.com/show/533707/reply.svg"/>
+                  <span>Reply</span>
+                </div>
               </div>
               <div className={styles.text}>{item.content}</div>
             </div>
