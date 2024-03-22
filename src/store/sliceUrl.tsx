@@ -26,12 +26,23 @@ export const sendMessage = createAsyncThunk(
       {
         content: obj.content,
         user: {
-          username: obj.username,
+          username: obj.user.username,
         },
         createdAt: obj.createdAt,
         score: 0,
         replies: [],
       }
+    );
+    return data;
+  }
+);
+
+export const sendReply = createAsyncThunk(
+  "patch/sendReply",
+  async (obj: any) => {
+    const { data } = await axios.patch(
+      `https://4e1abe50417fc731.mokky.dev/all/${obj.mainId}`,
+      { replies: obj.repa }
     );
     return data;
   }
@@ -83,6 +94,12 @@ export const sliceData = createSlice({
     builder.addCase(sendMessage.pending, (state) => {});
     builder.addCase(sendMessage.fulfilled, (state, action) => {});
     builder.addCase(sendMessage.rejected, (state, action) => {
+      alert("Something went wrong!");
+      location.reload();
+    });
+    builder.addCase(sendReply.pending, (state) => {});
+    builder.addCase(sendReply.fulfilled, (state, action) => {});
+    builder.addCase(sendReply.rejected, (state, action) => {
       alert("Something went wrong!");
       location.reload();
     });

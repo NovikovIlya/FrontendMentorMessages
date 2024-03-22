@@ -1,12 +1,11 @@
 import { Fragment, useEffect, useState } from "react";
-import styles from "./MessageComponent.module.css";
+import styles from "./ChildMessages.module.css";
 import { useAppDispatch, useAppSelector } from "../../hooks/redux";
 import { getData } from "../../store/sliceUrl";
 import { changeScore, changeScoreLocal } from "../../store/sliceUrl";
 import InputComponent from "../InputComponent/InputComponent";
-import ChildMessage from "../ChildMessages/ChildMessages";
 
-const MessageComponent = () => {
+const ChildMessage = ({replies}:any) => {
   const [replyClick, setReplyClick] = useState(false);
   const [showInput, setShowInput] = useState(null);
   const { messages } = useAppSelector((state) => state.sliceUrl);
@@ -34,9 +33,11 @@ const MessageComponent = () => {
 
 
   return (
-    <>
-      {messages?.map((item) => (
+    <div className={styles.mainContainer}>
+    {/* <div className={styles.containerTwo}></div> */}
+      {replies?.map((item:any) => (
         <Fragment key={item.id}>
+            <div className={styles.containerTwo}></div>
           <div className={styles.container}>
             <div>
               <div className={styles.left}>
@@ -66,15 +67,15 @@ const MessageComponent = () => {
               <div className={styles.text}>{item.content}</div>
             </div>
           </div>
-          <ChildMessage replies={item.replies}/>
+          
           {showInput === item.id && 
           <InputComponent idMain={item.id} isReply={true}/>
           }
         </Fragment>
       ))}
       
-    </>
+    </div>
   );
 };
 
-export default MessageComponent;
+export default ChildMessage;

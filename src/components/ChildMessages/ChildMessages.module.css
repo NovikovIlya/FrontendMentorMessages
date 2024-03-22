@@ -1,0 +1,44 @@
+
+.mainContainer{
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  justify-content: end;
+}
+.containerTwo{
+  width: 10%;
+  border-left: 1px solid black;
+}
+.container{
+    margin-top: 20px;
+    background-color: white;
+    border-radius: 7px;
+    padding: 10px;
+    display: grid;
+    grid-template-columns: 1fr 10fr;
+    gap:10px;
+    width: 80%;
+  }
+  .left{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    background-color: #F5F6FA;
+    margin-left: 14px;
+    margin-right: 14px;
+    border-radius: 10px;
+    gap: 5px;
+  }
+  .btn {
+    cursor: pointer;
+    margin:3px ;
+  }
+  
+  .head{
+    display: flex;
+    justify-content: space-between;
+  }
+  .miniHead{
+    display: flex;
+    gap: 10px;
+  }

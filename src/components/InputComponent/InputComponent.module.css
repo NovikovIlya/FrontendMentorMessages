@@ -3,3 +3,6 @@
     grid-template-columns: 5fr 1fr;
     gap: 10px;
 }
+.reply{
+    display: none;
+}
