@@ -87,6 +87,7 @@ const InputComponent = ({
         }`}
       >
         <textarea
+          maxLength={80}
           rows={4}
           className={styles.inp}
           value={textMessage}
@@ -95,6 +96,7 @@ const InputComponent = ({
         />
         <div className={styles.miniCont}>
           <input
+            maxLength={15}
             className={styles.inp}
             value={userText}
             onChange={handleChange}
