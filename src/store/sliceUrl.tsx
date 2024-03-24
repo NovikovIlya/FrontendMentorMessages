@@ -112,27 +112,19 @@ export const sliceData = createSlice({
       state.isLoad = false;
       state.isError = true;
     });
-    builder.addCase(changeScore.pending, (state) => {});
-    builder.addCase(changeScore.fulfilled, (state, action) => {});
-    builder.addCase(changeScore.rejected, (state, action) => {
+    builder.addCase(changeScore.rejected, () => {
       alert("Something went wrong!");
       location.reload();
     });
-    builder.addCase(sendMessage.pending, (state) => {});
-    builder.addCase(sendMessage.fulfilled, (state, action) => {});
-    builder.addCase(sendMessage.rejected, (state, action) => {
+    builder.addCase(sendMessage.rejected, () => {
       alert("Something went wrong!");
       location.reload();
     });
-    builder.addCase(sendReply.pending, (state) => {});
-    builder.addCase(sendReply.fulfilled, (state, action) => {});
-    builder.addCase(sendReply.rejected, (state, action) => {
+    builder.addCase(sendReply.rejected, () => {
       alert("Something went wrong!");
       location.reload();
     });
-    builder.addCase(changeScoreReply.pending, (state) => {});
-    builder.addCase(changeScoreReply.fulfilled, (state, action) => {});
-    builder.addCase(changeScoreReply.rejected, (state, action) => {
+    builder.addCase(changeScoreReply.rejected, () => {
       alert("Something went wrong!");
       location.reload();
     });
