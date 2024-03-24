@@ -62,7 +62,7 @@ const ChildMessage = ({ replies, MainId }: any) => {
                 >
                   +
                 </div>
-                <div>{item.score}</div>
+                <div className={styles.score}>{item.score}</div>
                 <div
                   onClick={() => changeScore(item.id, 'minus')}
                   className={styles.btn}

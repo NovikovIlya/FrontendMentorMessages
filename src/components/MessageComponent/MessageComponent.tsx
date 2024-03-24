@@ -45,7 +45,7 @@ const MessageComponent = () => {
                 >
                   +
                 </div>
-                <div>{item.score}</div>
+                <div className={styles.score}>{item.score}</div>
                 <div
                   onClick={() => changeScoreMinus(item.id, item.score)}
                   className={styles.btn}

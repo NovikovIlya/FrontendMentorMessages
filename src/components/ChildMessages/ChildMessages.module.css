@@ -32,6 +32,7 @@
 .btn {
   cursor: pointer;
   margin:3px ;
+  user-select: none;
 }
 
 .head{
@@ -56,4 +57,10 @@
 }
 .date{
   color:gray
+}
+.text{
+  color: #888A8B;
+}
+.username,.score{
+  font-weight: bold;
 }
