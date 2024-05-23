@@ -23,7 +23,43 @@
   margin:3px ;
   user-select: none;
 }
+.vb{
+  background-color: #ededfd;
+}
+.ss{
+  display: flex;
+  gap:20px;
+}
+.header{
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  align-items: center;
+}
+.read{
+  cursor: pointer;
+}
+.countRead{
+  color:white;
+  background-color: rgb(2, 2, 103);
+  border-radius: 10px;
+  padding: 1px;
+  width: 30px;
+  text-align: center;
+  display: flex;
+  justify-content: center
 
+}
+.title{
+  display: flex;
+  gap:10px;
+}
+.mark{
+  cursor: pointer;
+}
+.mark:hover{
+  color: rgb(149, 149, 149);
+}
 .head{
   display: flex;
   justify-content: space-between;

@@ -11,6 +11,7 @@ export interface MessageType {
   score: number
   user: User
   replies: Reply[]
+  read:boolean;
 }
 
 export interface User {

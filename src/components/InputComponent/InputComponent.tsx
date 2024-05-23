@@ -69,6 +69,7 @@ const InputComponent = ({
       user: {
         username: userText,
       },
+      read:false,
       createdAt: formattedDate,
     };
 

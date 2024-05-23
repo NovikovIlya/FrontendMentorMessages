@@ -29,6 +29,22 @@ export const changeScoreReply = createAsyncThunk(
   }
 );
 
+export const changeRead = createAsyncThunk("patch/changeScoreReply",async (id:any) => {
+    const { data } = await axios.patch( `https://4e1abe50417fc731.mokky.dev/all/${id}`,
+      { read: true }
+    );
+    return data;
+  }
+);
+
+export const changeReadAll = createAsyncThunk("patch/changeScoreReply",async (array:any) => {
+  const { data } = await axios.patch( `https://4e1abe50417fc731.mokky.dev/all`,
+    array
+  );
+  return data;
+}
+);
+
 export const sendMessage = createAsyncThunk(
   "post/sendMessage",
   async (obj: any) => {
@@ -42,6 +58,7 @@ export const sendMessage = createAsyncThunk(
         createdAt: obj.createdAt,
         score: 0,
         replies: [],
+        read: false,
       }
     );
     return data;
@@ -128,6 +145,11 @@ export const sliceData = createSlice({
       alert("Something went wrong!");
       location.reload();
     });
+    builder.addCase(changeRead.fulfilled, () => {
+     
+      location.reload();
+    });
+    
   },
 });
 
